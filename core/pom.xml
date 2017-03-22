@@ -2,66 +2,35 @@
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>org.springframework.security.extensions</groupId>
+  <groupId>eu.dariah.eu</groupId>
   <artifactId>spring-security-saml2-core</artifactId>
-  <version>1.0.1.BUILD-SNAPSHOT</version>
+  <version>1.0.3-SNAPSHOT</version>
   <name>Spring Security SAML v2 library</name>
   <description>Spring Security SAML v2 library</description>
   <url>https://github.com/SpringSource/spring-security-saml</url>
-  <organization>
-    <name>SpringSource</name>
-    <url>http://springsource.org/spring-security-saml</url>
-  </organization>
-  <licenses>
-    <license>
-      <name>The Apache Software License, Version 2.0</name>
-      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-      <distribution>repo</distribution>
-    </license>
-  </licenses>
-  <mailingLists>
-    <mailingList>
-      <name>Spring Security SAML Forum</name>
-      <post>http://forum.springsource.org/forumdisplay.php?86-SAML</post>
-      <archive>http://forum.springsource.org/forumdisplay.php?86-SAML</archive>
-    </mailingList>
-  </mailingLists>
-  <developers>
-    <developer>
-      <id>vschafer</id>
-      <name>Vladimir Schafer</name>
-      <email>vladimir.schafer at gmail.com</email>
-      <timezone>+2</timezone>
-    </developer>
-  </developers>
-  <contributors>
-    <contributor>
-      <name>Mandus Elfvingr</name>
-    </contributor>
-    <contributor>
-      <name>Rob Moore</name>
-    </contributor>
-    <contributor>
-      <name>Jonathan Tellier</name>
-    </contributor>
-    <contributor>
-      <name>Wade Dorrell</name>
-    </contributor>
-  </contributors>
-  <issueManagement>
-    <system>jira</system>
-    <url>http://jira.springsource.org/browse/SES</url>
-  </issueManagement>
-  <scm>
-    <connection>scm:git:git://github.com/SpringSource/spring-security-saml</connection>
-    <developerConnection>scm:git:git://github.com/SpringSource/spring-security-saml</developerConnection>
-    <url>https://github.com/SpringSource/spring-security-saml</url>
-  </scm>
+ 
+  <properties>
+  	<org.springframework-version>4.3.6.RELEASE</org.springframework-version>
+	<org.springsecurity-version>4.2.1.RELEASE</org.springsecurity-version>
+  	<org.opensaml-version>2.6.5</org.opensaml-version>
+  </properties>
+ 
+  <distributionManagement>
+	<repository>
+		<id>central</id>
+		<url>https://minfba.de.dariah.eu/artifactory/dariah-release-proxy</url>
+	</repository>
+	<snapshotRepository>
+		<id>snapshots</id>
+		<url>https://minfba.de.dariah.eu/artifactory/dariah-snapshot-proxy</url>
+	</snapshotRepository>
+  </distributionManagement>
+ 
   <dependencies>
     <dependency>
       <groupId>org.opensaml</groupId>
       <artifactId>opensaml</artifactId>
-      <version>2.6.1</version>
+      <version>${org.opensaml-version}</version>
       <scope>compile</scope>
       <exclusions>
         <exclusion>
@@ -91,19 +60,19 @@
     <dependency>
       <groupId>org.springframework.security</groupId>
       <artifactId>spring-security-config</artifactId>
-      <version>3.1.2.RELEASE</version>
+      <version>${org.springsecurity-version}</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>org.springframework.security</groupId>
       <artifactId>spring-security-core</artifactId>
-      <version>3.1.2.RELEASE</version>
+      <version>${org.springsecurity-version}</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>org.springframework.security</groupId>
       <artifactId>spring-security-web</artifactId>
-      <version>3.1.2.RELEASE</version>
+      <version>${org.springsecurity-version}</version>
       <scope>compile</scope>
       <exclusions>
         <exclusion>
@@ -155,7 +124,7 @@
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-test</artifactId>
-      <version>3.1.2.RELEASE</version>
+      <version>${org.springframework-version}</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
@@ -171,4 +140,16 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.19.1</version>
+        <configuration>
+          <skipTests>true</skipTests>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 </project>
