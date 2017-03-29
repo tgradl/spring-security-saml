@@ -464,6 +464,9 @@ public class MetadataGenerator {
         DiscoveryResponse discovery = builder.buildObject(DiscoveryResponse.DEFAULT_ELEMENT_NAME);
         discovery.setBinding(DiscoveryResponse.IDP_DISCO_NS);
         discovery.setLocation(getDiscoveryResponseURL(entityBaseURL, entityAlias));
+        // TGR: This can be default because we have no more than one disco service right now
+        discovery.setIndex(1);
+        
         return discovery;
     }
 
