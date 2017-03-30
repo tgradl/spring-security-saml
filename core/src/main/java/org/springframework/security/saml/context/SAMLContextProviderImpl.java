@@ -313,7 +313,7 @@ public class SAMLContextProviderImpl implements SAMLContextProvider, Initializin
 
         EntityDescriptor entityDescriptor = metadata.getEntityDescriptor(localEntityId);
         RoleDescriptor roleDescriptor = metadata.getRole(localEntityId, localEntityRole, SAMLConstants.SAML20P_NS);
-        ExtendedMetadata extendedMetadata = metadata.getExtendedMetadata(localEntityId);
+        ExtendedMetadata extendedMetadata = metadata.getExtendedMetadata(localEntityId);;
 
         if (entityDescriptor == null || roleDescriptor == null) {
             throw new MetadataProviderException("Metadata for entity " + localEntityId + " and role " + localEntityRole + " wasn't found");

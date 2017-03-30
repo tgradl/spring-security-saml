@@ -247,8 +247,6 @@ public class SAMLEntryPoint extends GenericFilterBean implements AuthenticationE
             List<Pair<String, String>> queryParams = urlBuilder.getQueryParams();
             queryParams.add(new Pair<String, String>(SAMLDiscovery.ENTITY_ID_PARAM, context.getLocalEntityId()));
             queryParams.add(new Pair<String, String>(SAMLDiscovery.RETURN_ID_PARAM, IDP_PARAMETER));
-            
-            // TODO: This needs to be based on the context
             queryParams.add(new Pair<String, String>(SAMLDiscovery.RETURN_URL_PARAM, context.getLocalExtendedMetadata().getIdpDiscoveryResponseURL()));
             discoveryURL = urlBuilder.buildURL();
 

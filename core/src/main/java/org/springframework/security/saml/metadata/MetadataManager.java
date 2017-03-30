@@ -536,8 +536,13 @@ public class MetadataManager extends ChainingMetadataProvider implements Extende
                 } else {
                     log.debug("Combining signature filter with the existing in a new chain");
                     MetadataFilterChain chain = new MetadataFilterChain();
-                    chain.getFilters().add(currentFilter);
-                    chain.getFilters().add(filter);
+                    
+                    // Patched as of https://github.com/spring-projects/spring-security-saml/issues/160
+                    List<MetadataFilter> filters = new ArrayList<MetadataFilter>();
+                    filters.add(currentFilter);
+                    filters.add(filter);
+                    
+                    chain.setFilters(filters);
                 }
             } else {
                 log.debug("Adding signature filter");
