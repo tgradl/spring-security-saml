@@ -323,7 +323,7 @@ public class WebSSOProfileConsumerImpl extends AbstractProfileBase implements We
      * @throws SAMLException       error validating the object
      * @throws DecryptionException in case the NameID can't be decrypted
      */
-    protected void verifySubject(Subject subject, AuthnRequest request, SAMLMessageContext context) throws SAMLException, DecryptionException {
+    protected void verifySubject(Subject subject, RequestAbstractType request, SAMLMessageContext context) throws SAMLException, DecryptionException {
 
         for (SubjectConfirmation confirmation : subject.getSubjectConfirmations()) {
 
