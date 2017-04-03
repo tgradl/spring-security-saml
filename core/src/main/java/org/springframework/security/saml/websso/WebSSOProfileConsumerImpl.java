@@ -329,7 +329,7 @@ public class WebSSOProfileConsumerImpl extends AbstractProfileBase implements We
 
             if (SubjectConfirmation.METHOD_BEARER.equals(confirmation.getMethod())) {
 
-                log.debug("Processing Bearer subject confirmation");
+                log.debug("Processing Bearer subject confirmation");;
                 SubjectConfirmationData data = confirmation.getSubjectConfirmationData();
 
                 // Bearer must have confirmation saml-profiles-2.0-os 554
