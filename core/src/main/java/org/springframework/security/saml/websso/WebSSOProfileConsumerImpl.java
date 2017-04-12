@@ -282,9 +282,11 @@ public class WebSSOProfileConsumerImpl extends AbstractProfileBase implements We
     protected void verifyAssertion(Assertion assertion, AuthnRequest request, SAMLMessageContext context) throws AuthenticationException, SAMLException, org.opensaml.xml.security.SecurityException, ValidationException, DecryptionException {
 
         // Verify storage time skew
-        if (!isDateTimeSkewValid(getResponseSkew(), getMaxAssertionTime(), assertion.getIssueInstant())) {
-            throw new SAMLException("Assertion is too old to be used, value can be customized by setting maxAssertionTime value " + assertion.getIssueInstant());
-        }
+    	if (getMaxAssertionTime()>0) {
+	        if (!isDateTimeSkewValid(getResponseSkew(), getMaxAssertionTime(), assertion.getIssueInstant())) {
+	            throw new SAMLException("Assertion is too old to be used, value can be customized by setting maxAssertionTime value " + assertion.getIssueInstant());
+	        }
+    	}
 
         // Verify validity of storage
         // Advice is ignored, core 574
