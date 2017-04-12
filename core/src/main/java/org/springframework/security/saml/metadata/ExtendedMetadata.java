@@ -133,6 +133,11 @@ public class ExtendedMetadata implements Serializable, Cloneable {
      * If true received artifactResolve messages will require a signature, sent artifactResolve will be signed.
      */
     private boolean requireArtifactResolveSigned = true;
+    
+    /**
+     * If true received attributeQuery messages will require a signature, sent attributeQuery will be signed.
+     */
+    private boolean requireAttributeQuerySigned = true;
 
     /**
      * Flag indicating whether to support unsolicited responses (IDP-initialized SSO). Only valid for remote
@@ -355,6 +360,24 @@ public class ExtendedMetadata implements Serializable, Cloneable {
     }
 
     /**
+     * Flag indicating whether entity in question requires attribute query messages to be signed.
+     *
+     * @return signature flag
+     */
+    public boolean isRequireAttributeQuerySigned() {
+		return requireAttributeQuerySigned;
+	}
+
+    /**
+     * If true received attributeQuery messages will require a signature, sent attributeQuery will be signed.
+     *
+     * @param requireAttributeQuerySigned attribute query signature flag
+     */
+	public void setRequireAttributeQuerySigned(boolean requireAttributeQuerySigned) {
+		this.requireAttributeQuerySigned = requireAttributeQuerySigned;
+	}
+
+	/**
      * Key used to authenticate instance against remote peers when specified on local entity. When specified on
      * remote entity the key is added as a trust anchor during communication with the entity using SSL/TLS.
      *
