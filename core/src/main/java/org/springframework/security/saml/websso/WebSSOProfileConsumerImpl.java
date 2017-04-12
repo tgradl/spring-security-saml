@@ -536,9 +536,11 @@ public class WebSSOProfileConsumerImpl extends AbstractProfileBase implements We
     protected void verifyAuthenticationStatement(AuthnStatement auth, RequestedAuthnContext requestedAuthnContext, SAMLMessageContext context) throws AuthenticationException {
 
         // Validate that user wasn't authenticated too long time ago
-        if (!isDateTimeSkewValid(getResponseSkew(), getMaxAuthenticationAge(), auth.getAuthnInstant())) {
-            throw new CredentialsExpiredException("Authentication statement is too old to be used with value " + auth.getAuthnInstant());
-        }
+    	if (this.getMaxAuthenticationAge()>0) {
+	        if (!isDateTimeSkewValid(getResponseSkew(), getMaxAuthenticationAge(), auth.getAuthnInstant())) {
+	            throw new CredentialsExpiredException("Authentication statement is too old to be used with value " + auth.getAuthnInstant());
+	        }
+    	}
 
         // Validate users session is still valid
             if (auth.getSessionNotOnOrAfter() != null && auth.getSessionNotOnOrAfter().isBeforeNow()) {
